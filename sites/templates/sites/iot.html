@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+Dispositivos inteligentes
+{% endblock title %}
+
+{% block h_1 %}
+Nuevo dispositivo inteligente
+{% endblock h_1 %}
+
+{% block main %}
+{% if forms.errors %}
+<p style="color: red;"> Error </p>
+{% endif %}
+<div class="d-flex flex-column">
+    <div class="container-fluid">
+        <div class="column">
+            <form action="" method="POST"> {% csrf_token %}
+                <table>{{ form }}</table>  
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock main %}

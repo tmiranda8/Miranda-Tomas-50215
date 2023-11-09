@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+Base de datos
+{% endblock title %}
+
+{% block h_1 %}
+Visualizacion de la base de datos
+{% endblock h_1 %}
+
+{% block main %}
+<div class="container-fluid">
+    <div class = "row"> 
+        <div class="col justify-content-between">
+            {% if network %}
+            <div class="h5">
+                Dispositivos de red
+            </div>
+            {% endif %}
+            <ul class="pl-1">
+                {% for netdevice in network %}
+                <li>{{netdevice.product_type}} {{netdevice.brand}} {{netdevice.product_model}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col justify-content-between">
+            {% if iot %}
+            <div class="h5">
+                Dispositivos inteligentes
+            </div>
+            {% endif %}
+            <ul class="pl-1">
+                {% for iotdevice in iot %}
+                <li>{{iotdevice.product_type}} {{iotdevice.brand}} {{iotdevice.product_model}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col justify-content-between">
+            {% if hw %}
+            <div class="h5">
+                Componentes para servidor
+            </div>
+            {% endif %}
+            <ul class="pl-1">
+                {% for hwdevice in hw %}
+                <li>{{hwdevice.product_type}} {{hwdevice.brand}} {{hwdevice.product_model}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock main %}
