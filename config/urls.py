@@ -18,6 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 from sites import views
 
+admin.site.site_header = 'Panel de control de WeDomotic'
+admin.site.index_title = 'Administracion del sitio'
+admin.site.site_title = 'Wedomotic'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage, name='homepage'),

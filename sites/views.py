@@ -14,7 +14,7 @@ def set_netdevice(request):
             product_type = cleaned['product_type']
             price = cleaned['price']
             description = cleaned['description']
-            object = models.NetworkDevices(brand=brand, product_model=product_model, product_type=product_type, price=price, description=description)
+            object = models.NetworkDevice(brand=brand, product_model=product_model, product_type=product_type, price=price, description=description)
             object.save()
             id = models.GlobalSearch(identifier=object.__str__())
             id.save()
@@ -35,7 +35,7 @@ def set_iotdevice(request):
             product_type = cleaned['product_type']
             price = cleaned['price']
             description = cleaned['description']
-            object = models.IoTDevices(brand=brand, product_model=product_model, product_type=product_type, price=price, description=description)
+            object = models.IoTDevice(brand=brand, product_model=product_model, product_type=product_type, price=price, description=description)
             object.save()
             id = models.GlobalSearch(identifier=object.__str__())
             id.save()
@@ -54,7 +54,7 @@ def set_hwcomp(request):
             product_type = cleaned['product_type']
             price = cleaned['price']
             description = cleaned['description']
-            object = models.HardwareComponents(brand=brand, product_model=product_model, product_type=product_type, price=price, description=description)
+            object = models.HardwareComponent(brand=brand, product_model=product_model, product_type=product_type, price=price, description=description)
             object.save()
             id = models.GlobalSearch(identifier=object.__str__())
             id.save()
@@ -110,7 +110,7 @@ def get_device(request):
     #     return render(request,'sites/search.html', {'form':form})
 
 def get_database(request):
-    network = models.NetworkDevices.objects.all()
-    iot = models.IoTDevices.objects.all()
-    hw = models.HardwareComponents.objects.all()
+    network = models.NetworkDevice.objects.all()
+    iot = models.IoTDevice.objects.all()
+    hw = models.HardwareComponent.objects.all()
     return render(request, 'sites/database.html',{'network':network ,'iot':iot ,'hw':hw})
