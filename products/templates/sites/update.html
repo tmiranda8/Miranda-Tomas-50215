@@ -2,22 +2,19 @@
 {% load static %}
 
 {% block title %}
-Dispositivos de Red
+Modificar datos
 {% endblock title %}
 
 {% block h_1 %}
-Nuevo dipositivo de red
+Modificar información del producto:
 {% endblock h_1 %}
 
 {% block main %}
-{% if forms.errors %}
-<p style="color: red;"> Error </p>
-{% endif %}
 <div class="d-flex flex-column">
     <div class="container-fluid">
-        <div class="column">
+        <div class="column mb-4">
             <form action="" method="POST"> {% csrf_token %}
-                <table>{{ form }}</table>  
+                <table>{{form}}</table>  
                 <input type="submit" value="Enviar">
             </form>
         </div>

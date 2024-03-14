@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+DetailView
+{% endblock title %}
+
+{% block h_1 %}
+DetailView
+{% endblock h_1 %}
+
+{% block main %}
+<div class="h5">
+    Usuario {{useraccount.id}}
+</div>
+<ul>
+	<li>user = {{useraccount.user}}</li>
+	<li>user name = {{useraccount.name}}</li>
+	<li>surname = {{useraccount.surname}}</li>
+</ul>
+{% endblock main %}

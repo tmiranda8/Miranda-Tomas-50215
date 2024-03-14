@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+Buscar dispositivos
+{% endblock title %}
+
+{% block h_1 %}
+Buscar dispositivos en la base de datos
+{% endblock h_1 %}
+
+{% block main %}
+{% if results.errors %}
+<p style="color: red;"> Error </p>
+{% endif %}
+<div class="d-flex flex-column">
+    <div class="container-fluid">
+        <div class="column mb-2">
+            <p class="mb-2">Puede realizar busquedas a partir de cualquier palabra clave asociada a marca o modelo:</p>
+            <form action="">
+                {{form.input}}
+                <input type="submit" value="Buscar">
+            </form>
+        </div>
+    </div>
+    {% if results %}
+    <div class="column align-items-center justify-content-between">
+        <ul>
+        {% for result in results %}
+        <li>{{result.name}}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% elif results == False %}
+    <div class="container-fluid">
+        <div>
+            <p class="mt-2">No se han encontrado dispositivos relacionados con su busqueda</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock main %}

@@ -1,0 +1,15 @@
+.nav-color{
+    background-color: #1b2d6f;
+    background-image: linear-gradient(180deg, #1b2d6f 75%, #224abe 150%);
+    background-size: cover;
+}
+.wedo-logo{
+    max-width: 48px;
+    max-height: 48px;
+}
+.wedo-text{
+    margin-top: 10px;
+    margin-left: 5px;
+    max-width: 123px;
+    max-height: 35px;
+}

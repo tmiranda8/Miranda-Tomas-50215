@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+DeleteView
+{% endblock title %}
+
+{% block h_1 %}
+DeleteView
+{% endblock h_1 %}
+
+{% block main %}
+<div class="d-flex flex-column">
+    <div class="container-fluid">
+				<form action="" method="POST"> {% csrf_token %}
+					<p>Delete?</p>
+					<input type="submit" value="Si">
+				</form>
+    </div>
+</div>
+{% endblock main %}

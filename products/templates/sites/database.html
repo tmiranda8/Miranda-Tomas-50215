@@ -13,40 +13,46 @@ Visualizacion de la base de datos
 <div class="container-fluid">
     <div class = "row"> 
         <div class="col justify-content-between">
-            {% if network %}
             <div class="h5">
                 Dispositivos de red
             </div>
-            {% endif %}
+            {% if network %}
             <ul class="pl-1">
                 {% for netdevice in network %}
-                <li>{{netdevice.product_type}} {{netdevice.brand}} {{netdevice.product_model}}</li>
+                <li>{{netdevice.product_type}} {{netdevice.brand}} {{netdevice.product_model}}  | <a href={% url "delete" netdevice.id %}>Eliminar</a>  | <a href={% url "update" netdevice.id %}>Modificar</a></li>
                 {% endfor %}
             </ul>
+            {% else %}
+            <p>No existen dispositivos</p>
+            {% endif %}
         </div>
         <div class="col justify-content-between">
-            {% if iot %}
             <div class="h5">
                 Dispositivos inteligentes
             </div>
-            {% endif %}
+            {% if iot %}
             <ul class="pl-1">
                 {% for iotdevice in iot %}
-                <li>{{iotdevice.product_type}} {{iotdevice.brand}} {{iotdevice.product_model}}</li>
+                <li>{{iotdevice.product_type}} {{iotdevice.brand}} {{iotdevice.product_model}}  | <a href={% url "delete" iotdevice.id %}>Eliminar</a>  | <a href={% url "update" iotdevice.id %}>Modificar</a></li>
                 {% endfor %}
             </ul>
+            {% else %}
+            <p>No existen dispositivos</p>
+            {% endif %}
         </div>
         <div class="col justify-content-between">
-            {% if hw %}
             <div class="h5">
                 Componentes para servidor
             </div>
-            {% endif %}
+            {% if hw %}
             <ul class="pl-1">
                 {% for hwdevice in hw %}
-                <li>{{hwdevice.product_type}} {{hwdevice.brand}} {{hwdevice.product_model}}</li>
+                <li>{{hwdevice.product_type}} {{hwdevice.brand}} {{hwdevice.product_model}}  | <a href={% url "delete" hwdevice.id %}>Eliminar</a>  | <a href={% url "update" hwdevice.id %}>Modificar</a></li>
                 {% endfor %}
             </ul>
+            {% else %}
+            <p>No existen dispositivos</p>
+            {% endif %}
         </div>
     </div>
 </div>
