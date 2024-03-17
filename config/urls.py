@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render
+from datetime import date
 
 
 admin.site.site_header = 'Panel de control de WeDomotic'
@@ -24,11 +25,12 @@ admin.site.index_title = 'Administracion del sitio'
 admin.site.site_title = 'Wedomotic'
 
 def homepage(request):
-	return render(request, 'index.html')
+	return render(request, 'index.html',{'year':date.today().year})
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepage, name='homepage'),
     path('', include('products.urls')),
-    path('clients/', include('clients.urls'))
+    path('clients/', include('clients.urls')),
+    path('auth/', include('users.urls'))
 ]

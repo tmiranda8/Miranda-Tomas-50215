@@ -81,10 +81,9 @@ def get_database(request):
     network = models.NetworkDevice.objects.all()
     iot = models.IoTDevice.objects.all()
     hw = models.HardwareComponent.objects.all()
-    print(network)
     return render(request, 'sites/database.html',{'network':network ,'iot':iot ,'hw':hw})
 
-def delete(object_id):
+def delete(request, object_id):
     to_delete = models.Products.objects.get(id=object_id)
     to_delete.delete()
     return redirect('database')
