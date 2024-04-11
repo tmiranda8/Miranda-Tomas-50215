@@ -25,12 +25,16 @@ admin.site.index_title = 'Administracion del sitio'
 admin.site.site_title = 'Wedomotic'
 
 def homepage(request):
-	return render(request, 'index.html',{'year':date.today().year})
+	return render(request, 'homepage.html',{'year':date.today().year})
+
+def about(request):
+    return render(request, 'about.html')
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', homepage, name='homepage'),
+    path('admin/', admin.site.urls, name = 'panel'),
+    path('', homepage, name = 'homepage'),
     path('', include('products.urls')),
     path('clients/', include('clients.urls')),
-    path('auth/', include('users.urls'))
+    path('auth/', include('users.urls')),
+    path('about/', about, name = 'about')
 ]

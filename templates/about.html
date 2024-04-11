@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+Acerca de mi
+{% endblock title %}
+
+{% block h_1 %}Acerca de nosotros{% endblock h_1 %}
+
+{% block main %}
+<div class = 'd-flex flex-column mb-3'>
+    <div class="px-2 pb-2">
+        <img src={% static "img/wedoabout.png" %} class="img-fluid">
+    </div>
+    <div class="row px-2 mb-3">
+        <div class = 'col-md-6'>
+            <div class = 'card shadow h-100'>
+                <div class = 'card-body'>
+                    Inspirados por la importante expansión y divulgación de la IA, un grupo de mentes creativas y apasionadas se unieron para crear una marca con un propósito claro: llevar la inteligencia al hogar y transformar la manera en que vivimos nuestras vidas.
+                </div>
+            </div>
+        </div>
+        <div class = 'col-md-6'>
+            <div class = 'card shadow h-100'>
+                <div class = 'card-body'>
+                    <img src={% static "img/robot.jpg" %} class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row px-2 mb-3">
+        <div class = 'col-md-6'>
+            <div class = 'card shadow h-100'>
+                <div class = 'card-body'>
+                    <img src={% static "img/alarma.jpg" %} class="img-fluid">
+                </div>
+            </div>
+        </div>
+        <div class = 'col-md-6'>
+            <div class = 'card shadow h-100'>
+                <div class = 'card-body'>
+                    <p>Creemos firmemente que un espacio smart no solo debe ser tecnológicamente avanzado, sino también intuitivo y fácil de usar.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row px-2">
+        <div class = 'col-md-6'>
+            <div class = 'card shadow h-100'>
+                <div class = 'card-body'>
+                    <p>Nuestro objetivo es garantizar mayor confort en tus ambientes y eficiencia en el uso a partir de un consumo inteligente, aprovechando las potencialidades de la conectividad y la Inteligencia Artificial.</p>
+                </div>
+            </div>
+        </div>
+        <div class = 'col-md-6'>
+            <div class = 'card shadow h-100'>
+                <div class = 'card-body'>
+                    <img src={% static "img/voice.jpg" %} class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}

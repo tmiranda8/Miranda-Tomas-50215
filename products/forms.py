@@ -17,7 +17,7 @@ class AddHardwareComponent(AddDevice):
     pass
 
 class Search(forms.Form):
-    input = forms.CharField(max_length=64, required=False)
+    input = forms.CharField(max_length=64, required=False, widget=forms.TextInput(attrs={'class': 'form-control bg-light border-0 small', 'id':'search','placeholder':'Buscar'}))
 
 class UpdateDevice(AddDevice):
     pass
