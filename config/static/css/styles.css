@@ -13,3 +13,9 @@
     max-width: 123px;
     max-height: 35px;
 }
+.login-img{
+    background-image: url(../img/login.png);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

@@ -52,5 +52,12 @@ Los requisitos base serán parte de los criterios de evaluación para aprobar el
 
 ### Implementación
 La herencia HTML se aloja en `./templates/index.html`. El diseño esta basado en la lógica del siguiente proyecto: `https://startbootstrap.github.io/startbootstrap-sb-admin-2/index.html`.
-
+<!-- 
+### missing
+- Errores de Login
+- Para crear, editar o borrar los productos y/o imágenes, se debe estar registrado como **Administrador**
+- El título de cada clase de producto en el listado será un acceso a la ruta `/products/<product_class>/` para filtrar los productos por clase.
+    - Cada producto mostrará una información mínima y tendrá un botón `**Detalles**` que permitirá acceder a todos los usuarios registrados a sus datos, en la ruta `/products/<product_class>/<product_id>` 
+    - En esa vista, a usuarios con privilegios, les permitirá acceder a borrar y editar dicho objeto.
+-->
 ![Logo](https://wedomotic.netlify.app/Images/logos/fondo.png)
