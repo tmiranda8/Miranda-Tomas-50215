@@ -1,8 +1,8 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.views import logout_then_login
 from django.urls import reverse_lazy
-from users.forms import CreationForm, AuthForm, EditForm
+from users.forms import CreationForm, AuthForm, EditForm, ResetPwForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
@@ -48,10 +48,24 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
             return render(request, 'users/profile.html', {"form" : form, "first" : form['first_name'], "last" : form['last_name'], "username" : form['username'], "date_joined" : form['date_joined'], 'email':form['email']})
+        else:
+            print(form.errors)
+            redirect('404')
     else:
         form = EditForm(instance = profile)
-    return render(request, 'users/profile.html', {"form" : form, "first" : form['first_name'], "last" : form['last_name'], "username" : form['username'], "date_joined" : form['date_joined'], 'email':form['email']})
+        return render(request, 'users/profile.html', {"form" : form, "first" : form['first_name'], "last" : form['last_name'], "username" : form['username'], "date_joined" : form['date_joined'], 'email':form['email']})
 
-class PasswordReset(LoginRequiredMixin, PasswordChangeView):
-    template_name = 'users/pwreset.html'
-    success_url = reverse_lazy('profile')
+
+@login_required
+def password_change(request):
+    if request.method == "POST":
+        form = ResetPwForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect('homepage')
+        else:
+            return render(request, 'users/reset.html', {'form':form}) 
+    else:
+        form = ResetPwForm(user=request.user)
+        return render(request, 'users/reset.html', {'form':form})

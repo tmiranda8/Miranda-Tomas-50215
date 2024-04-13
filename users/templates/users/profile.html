@@ -19,6 +19,9 @@ NO HEREDA DE INDEX
     <link rel="icon" href={% static "img/favicon.ico" %} type="image/x-icon">
 </head>
 
+{% if form.errors %}
+{{form.errors}}
+{% else %}
 <body class="bg-gradient-primary">
     <div class="container">
         <div class="card o-hidden border-0 shadow-lg my-5">
@@ -29,8 +32,9 @@ NO HEREDA DE INDEX
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Editar perfil</h1>
+                                <a href={% url "homepage" %} style = 'text-decoration:none'><h1 class="h4 text-gray-900 mb-4">Editar perfil</h1></a>
                             </div>
+                            <hr>
                             <form class="user" action={% url "profile" %} method="POST"> {% csrf_token %}
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -40,8 +44,14 @@ NO HEREDA DE INDEX
                                         {{last}}
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    {{email}}
+                                <div class="form-group row">
+                                    <div class="col-sm-8 mb-3 mb-sm-0">
+                                        {{email}}
+                                    </div>
+                                    <div class="col-sm-4">
+                                        {{date_joined}}
+                                    </div>
+                                    
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -56,7 +66,7 @@ NO HEREDA DE INDEX
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href={% url "pwreset" %}>Olvidaste tu contraseña?</a>
+                                <a class="small" href={% url "reset" %}>Cambiar contraseña</a>
                             </div>
                         </div>
                     </div>
@@ -72,4 +82,5 @@ NO HEREDA DE INDEX
     <!-- Custom scripts for all pages-->
     <script src={% static "js/sb-admin-2.min.js" %}></script>
 </body>
+{% endif %}
 </html>

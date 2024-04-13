@@ -1,3 +1,20 @@
+{% comment %} {% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block h_1 %}
+{% endblock h_1 %}
+
+{% block main %}
+<form action='' method="POST"> {% csrf_token %}
+    {{form.as_div}}
+    <input type="submit" value="Cambiar" class="btn btn-primary">
+</form>
+{% endblock main %} {% endcomment %}
+
 <!-- 
 
 NO HEREDA DE INDEX
@@ -19,7 +36,9 @@ NO HEREDA DE INDEX
     <link href = {% static "css/styles.css" %} rel="stylesheet">
     <link rel="icon" href={% static "img/favicon.ico" %} type="image/x-icon">
 </head>
-
+{% if form.errors %}
+{{form.errors}}
+{% else %}
 <body class="bg-gradient-primary">
     <div class="container">
         <!-- Outer Row -->
@@ -34,25 +53,17 @@ NO HEREDA DE INDEX
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <a href={% url "homepage" %} style = 'text-decoration:none'><h1 class="h4 text-gray-900 mb-4">Bienvenido</h1></a>
+                                        <a href={% url "homepage" %} style = 'text-decoration:none'><h1 class="h4 text-gray-900 mb-4">Reinicio de constraseña</h1></a>
                                     </div>
                                     <hr>
-                                    <form class="user" action={% url "login" %} method="POST"> {% csrf_token %}
+                                    <form class="user" action={% url "reset" %} method="POST"> {% csrf_token %}
+                                        {% for fields in form %}
                                         <div class="form-group">
-                                            {{username}}
+                                            {{fields}}
                                         </div>
-                                        <div class="form-group">
-                                            {{password}}
-                                        </div>
+                                        {% endfor %}
                                         <input type="submit" value="Iniciar sesión" class="btn btn-primary btn-user btn-block">
                                     </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href = {% url "reset" %}>Olvidaste tu contraseña?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href = {% url "signup" %}>No estas registrado? Crea una cuenta!</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -69,5 +80,5 @@ NO HEREDA DE INDEX
     <!-- Custom scripts for all pages-->
     <script src={% static "js/sb-admin-2.min.js" %}></script>
 </body>
-
+{% endif %}
 </html>

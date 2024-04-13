@@ -30,11 +30,15 @@ def homepage(request):
 def about(request):
     return render(request, 'about.html')
 
+def error404(request):
+    return render(request, '404.html')
+
 urlpatterns = [
     path('admin/', admin.site.urls, name = 'panel'),
     path('', homepage, name = 'homepage'),
     path('', include('products.urls')),
     path('clients/', include('clients.urls')),
     path('auth/', include('users.urls')),
-    path('about/', about, name = 'about')
+    path('about/', about, name = 'about'),
+    path('404/', error404, name = '404')
 ]
