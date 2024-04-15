@@ -34,6 +34,9 @@ NO HEREDA DE INDEX
                                 <a href={% url "homepage" %} style = 'text-decoration:none'><h1 class="h4 text-gray-900 mb-4">Crea tu cuenta</h1></a>
                             </div>
                             <hr>
+                            {% if form.errors %}
+                                {{form.errors}}
+                            {% else %}
                             <form class="user" action={% url "signup" %} method="POST"> {% csrf_token %}
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -57,6 +60,7 @@ NO HEREDA DE INDEX
                                 <hr>
                                 <input type="submit" value="Iniciar sesión" class="btn btn-primary btn-user btn-block">
                             </form>
+                            {% endif %}
                             <hr>
                             <div class="text-center">
                                 <a class="small" href = {% url "reset" %}>Olvidaste tu contraseña?</a>

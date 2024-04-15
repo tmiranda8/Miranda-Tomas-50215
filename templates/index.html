@@ -36,11 +36,13 @@
             
             {% if request.user.is_authenticated %}
             <!-- Nav Item - Dashboard -->
+            {% if request.user.is_staff %}
             <li class="nav-item active">
                 <a class="nav-link" href={% url "admin:index" %}>
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Administracion</span></a>
-            </li>
+                </li>
+            {% endif %}
 
             <!-- Divider -->
             <hr class="sidebar-divider">

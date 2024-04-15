@@ -13,6 +13,7 @@ class AddDevice(forms.Form):
         self.fields['product_type'].label = ''
         self.fields['price'].label = ''
         self.fields['description'].label = ''
+
 class AddNetworkDevice(AddDevice):
     pass
 

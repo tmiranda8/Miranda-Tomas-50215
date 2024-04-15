@@ -51,13 +51,28 @@ Los requisitos base serán parte de los criterios de evaluación para aprobar el
     - App de mensajería con todo lo necesario para que los usuarios puedan comunicarse entre sí por mensajes.
 
 ### Implementación
-La herencia HTML se aloja en `./templates/index.html`. El diseño esta basado en la lógica del siguiente proyecto: `https://startbootstrap.github.io/startbootstrap-sb-admin-2/index.html`.
+La herencia HTML sucede a partir del elemento padre `./templates/index.html`. El diseño esta basado en el siguiente template: `https://startbootstrap.github.io/startbootstrap-sb-admin-2/index.html`.
+
+### Deployment
+> [!NOTE] 
+> Si bien el sitio continúa en etapa de desarrolo, se ha establecido la configuración `DEBUG = False` y `ALLOWED_HOSTS = [your.local.ip.address]` en `settings.py`. La finalidad es lograr el manejo automático de ciertas `Http404 exceptions`. 
+Esto conlleva una desventaja: Django deja de servir los archivos estáticos. Es por esta razón que el servicio debe iniciarse estrictamente con el parámetro `--insecure`, sin omitir la correcta declaración previa de la dirección IP (`127.0.0.1`, por ejemplo). De lo contrario se producirá un **Bad Request (400)**
+
+> [!IMPORTANT]
+>```python manage.py runserver --insecure your.local.ip.address:port```
+
+Para arrancar el servicio en su totalidad luego de clonar el repositorio, deben realizarse los siguientes pasos:
+1. Crear entorno virtual: ```python -m venv /path/to/new/virtual/environment```
+2. Instalar los paquetes necesarios: ```pip install -r requirements.txt```
+3. Migracion de la base de datos: ```python manage.py migrate```
+4. Crear superuser: ```python manage.py createsuperuser```
+5. Configurar `ALLOWED_HOSTS` en `/config/settings.py`
+6. Iniciar el servicio: ```python manage.py runserver```
+
+![Logo](https://wedomotic.netlify.app/Images/logos/fondo.png)
 <!-- 
-### missing
-- Errores de Login
-- Para crear, editar o borrar los productos y/o imágenes, se debe estar registrado como **Administrador**
+### future updates*
 - El título de cada clase de producto en el listado será un acceso a la ruta `/products/<product_class>/` para filtrar los productos por clase.
     - Cada producto mostrará una información mínima y tendrá un botón `**Detalles**` que permitirá acceder a todos los usuarios registrados a sus datos, en la ruta `/products/<product_class>/<product_id>` 
     - En esa vista, a usuarios con privilegios, les permitirá acceder a borrar y editar dicho objeto.
 -->
-![Logo](https://wedomotic.netlify.app/Images/logos/fondo.png)

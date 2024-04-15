@@ -36,9 +36,6 @@ NO HEREDA DE INDEX
     <link href = {% static "css/styles.css" %} rel="stylesheet">
     <link rel="icon" href={% static "img/favicon.ico" %} type="image/x-icon">
 </head>
-{% if form.errors %}
-{{form.errors}}
-{% else %}
 <body class="bg-gradient-primary">
     <div class="container">
         <!-- Outer Row -->
@@ -56,14 +53,19 @@ NO HEREDA DE INDEX
                                         <a href={% url "homepage" %} style = 'text-decoration:none'><h1 class="h4 text-gray-900 mb-4">Reinicio de constraseña</h1></a>
                                     </div>
                                     <hr>
+                                    {% if form.errors %}
+                                    {{form.errors}}
+                                    {% else %}
                                     <form class="user" action={% url "reset" %} method="POST"> {% csrf_token %}
                                         {% for fields in form %}
                                         <div class="form-group">
                                             {{fields}}
                                         </div>
                                         {% endfor %}
+                                        <hr>
                                         <input type="submit" value="Iniciar sesión" class="btn btn-primary btn-user btn-block">
                                     </form>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -80,5 +82,4 @@ NO HEREDA DE INDEX
     <!-- Custom scripts for all pages-->
     <script src={% static "js/sb-admin-2.min.js" %}></script>
 </body>
-{% endif %}
 </html>
