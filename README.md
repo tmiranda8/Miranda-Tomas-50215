@@ -5,7 +5,7 @@ Para el proyecto final del curso "Python" en Coderhouse se plantea el desarrollo
 La propuesta es desarrollar un sitio web orientado a la gestión de proyectos mediante un panel de control y administracion de datos, basados en la lógica de sistemas CRM (Customer Relationship Management).
 
 Las funcionalidades del sitio giran en torno gestionar listas de productos y clientes en una base datos. 
-El objetivo es simplificar el proceso de consulta y cotización de proyectos para los miembros del equipo, que tendrán usuarios estándar.
+El objetivo final será simplificar el proceso de consulta y cotización de proyectos a los miembros del emprendimiento, que tendrán usuarios estándar.
 
 El proceso de carga y/o edición estará limitada a usuarios con privilegios, que deben ser creados únicamente con superuser.
 
@@ -55,12 +55,12 @@ La herencia HTML sucede a partir del elemento padre `./templates/index.html`. El
 
 ### Deployment
 > [!NOTE] 
-> Si bien el sitio continúa en etapa de desarrolo, se ha establecido la configuración `DEBUG = False` y `ALLOWED_HOSTS = [your.local.ip.address]` en `settings.py`. La finalidad es lograr el manejo automático de ciertas `Http404 exceptions`. 
+> Si bien el sitio continúa en etapa de desarrolo, se ha establecido la configuración `DEBUG = False` y `ALLOWED_HOSTS = [your.local.ip.address]` en `settings.py`. La finalidad es lograr el manejo automático de ciertas exceptions `Http404`, como así también habilitar el acceso al sitio desde otros dispositivos en la red local, como un teléfono móvil.
 
-Esto conlleva una desventaja: Django deja de servir los archivos estáticos. Es por esta razón que el servicio debe iniciarse estrictamente con el parámetro `--insecure`, sin omitir la correcta declaración previa de la dirección IP (`127.0.0.1`, por ejemplo). De lo contrario se producirá **Bad Request (400)**
+Lo anterior conlleva una desventaja: Django deja de servir los archivos estáticos. Es por esta razón que el servicio debe iniciarse estrictamente con el parámetro `--insecure`, y no debe omitirse la correcta declaración previa de la dirección IP (`127.0.0.1`, por ejemplo) en ALLOWED_HOSTS. De lo contrario se producirá **Bad Request (400)**
 
 > [!IMPORTANT]
-Se recomienda iniciar el servicio como sigue:
+Se recomienda iniciar el servicio como sigue, para evitar posibles errores:
 ```python manage.py runserver --insecure your.local.ip.address:port```
 
 Para arrancar el servicio en su totalidad luego de clonar el repositorio, deben realizarse los siguientes pasos:
