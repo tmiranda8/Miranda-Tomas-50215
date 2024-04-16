@@ -41,7 +41,7 @@
                 <a class="nav-link" href={% url "admin:index" %}>
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Administracion</span></a>
-                </li>
+            </li>
             {% endif %}
 
             <!-- Divider -->
@@ -61,33 +61,35 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Actions:</h6>
-                        <a class="collapse-item" href={% url "listview" %}>ListView</a>
-                        <a class="collapse-item" href={% url "createview" %}>CreateView</a>
+                        <a class="collapse-item" href={% url "listview" %}>Lista de clientes</a>
+                        <a class="collapse-item" href={% url "createview" %}>Nuevo cliente</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - PRODUCTS Collapse Menu -->
+            {% if request.user.is_staff %}
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Productos</span>
+                    <span>Nuevo producto</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Products:</h6>
-                        <a class="collapse-item" href={% url "netdevice" %}>Network devices</a>
-                        <a class="collapse-item" href={% url "iotdevice" %}>IoT devices</a>
+                        <h6 class="collapse-header">Tipo de producto:</h6>
+                        <a class="collapse-item" href={% url "netdevice" %}>Redes</a>
+                        <a class="collapse-item" href={% url "iotdevice" %}>IoT</a>
                         <a class="collapse-item" href={% url "hardware" %}>Hardware</a>
                     </div>
                 </div>
             </li>
+            {% endif %}
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href={% url 'database' %}>
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Base de datos</span></a>
+                    <span>Lista de productos</span></a>
             </li>
             {% endif %}
             <!-- Divider -->
@@ -112,9 +114,9 @@
                     {% block search %}
                     {% endblock search %}
                     <!-- Topbar Navbar -->
-                    <h3 class="d-inline-block form-inline mr-auto ml-md-3 my-0 mw-100">
+                    <h4 class="d-inline-block form-inline mr-auto ml-md-3 my-0 mw-100">
                     {% block h_1 %}Inicio{% endblock h_1 %}
-                    </h3>
+                    </h4>
                     <ul class="navbar-nav ml-auto">
                         {% if not request.user.is_authenticated %}
                         <li>
@@ -125,13 +127,33 @@
                             <a href={% url "login" %} class="btn btn-outline-primary">Log in</a>
                         </li>
                         {% else %}
-                        <li>
-                            <a href={% url "profile" %} class="btn btn-outline-dark">Profile</a>
-                        </li>
-                        <div class="topbar-divider d-none d-sm-block"></div>
-                        
-                        <li>
-                            <a href={% url "logout" %} class="btn btn-outline-warning">Log out</a>
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{request.user.first_name}} {{request.user.last_name}}</span>
+                                <img class="img-profile rounded-circle"
+                                    src = 
+                                    {% if request.user.profilepicture %}
+                                    {{request.user.profilepicture.picture.url}}
+                                    {% else %}
+                                    {% static "img/undraw_profile.svg" %}
+                                    {% endif %}
+                                    >
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href={% url "profile" %}>
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href={% url "logout" %} >
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
                         </li>
                         {% endif %}
                     </ul>

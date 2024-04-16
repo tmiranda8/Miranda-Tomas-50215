@@ -57,7 +57,7 @@ La herencia HTML sucede a partir del elemento padre `./templates/index.html`. El
 > [!NOTE] 
 > Si bien el sitio continúa en etapa de desarrolo, se ha establecido la configuración `DEBUG = False` y `ALLOWED_HOSTS = [your.local.ip.address]` en `settings.py`. La finalidad es lograr el manejo automático de ciertas `Http404 exceptions`. 
 
-Esto conlleva una desventaja: Django deja de servir los archivos estáticos. Es por esta razón que el servicio debe iniciarse estrictamente con el parámetro `--insecure`, sin omitir la correcta declaración previa de la dirección IP (`127.0.0.1`, por ejemplo). De lo contrario se producirá un **Bad Request (400)**
+Esto conlleva una desventaja: Django deja de servir los archivos estáticos. Es por esta razón que el servicio debe iniciarse estrictamente con el parámetro `--insecure`, sin omitir la correcta declaración previa de la dirección IP (`127.0.0.1`, por ejemplo). De lo contrario se producirá **Bad Request (400)**
 
 > [!IMPORTANT]
 Se recomienda iniciar el servicio como sigue:
@@ -65,11 +65,12 @@ Se recomienda iniciar el servicio como sigue:
 
 Para arrancar el servicio en su totalidad luego de clonar el repositorio, deben realizarse los siguientes pasos:
 1. Crear entorno virtual: ```python -m venv /path/to/new/virtual/environment```
-2. Instalar los paquetes necesarios: ```pip install -r requirements.txt```
-3. Migracion de la base de datos: ```python manage.py migrate```
-4. Crear superuser: ```python manage.py createsuperuser```
-5. Configurar `ALLOWED_HOSTS` en `/config/settings.py`
-6. Iniciar el servicio
+2. Arrancar el entorno virtual. En bash: ```. venv_path/Scripts/Activate```
+3. Instalar los paquetes necesarios: ```pip install -r requirements.txt```
+4. Migracion de la base de datos: ```python manage.py migrate```
+5. Crear superuser: ```python manage.py createsuperuser```
+6. Configurar `ALLOWED_HOSTS` en `/config/settings.py`
+7. Iniciar el servicio
 
 ![Logo](https://wedomotic.netlify.app/Images/logos/fondo.png)
 <!-- 

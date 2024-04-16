@@ -2,24 +2,24 @@
 {% load static %}
 
 {% block title %}
-Usuarios
+Clientes
 {% endblock title %}
 
 {% block h_1 %}
-Usuarios mediante Django ListView
+Lista de clientes
 {% endblock h_1 %}
 
 {% block main %}
 <div class="container-fluid">
-    <div class = "row"> 
+    {% comment %} <div class = "row"> 
         <div class="col justify-content-between">
-            {% if users %}
+            {% if clients %}
             <div class="h5">
                 Usuarios
             </div>
             <ul class="pl-1">
-                {% for user in users %}
-                <li><a href={% url "detailview" user.id %}>{{user.user}}</a> - <a href={% url "deleteview" user.id%}>Delete</a> - <a href={% url "updateview" user.id %}>Update</a></li>
+                {% for client in clients %}
+                <li><a href={% url "detailview" client.id %}>{{client.first_name}}</a> - <a href={% url "deleteview" client.id%}>Delete</a> - <a href={% url "updateview" client.id %}>Update</a></li>
                 {% endfor %}
             </ul>
             {% else %}
@@ -28,6 +28,45 @@ Usuarios mediante Django ListView
             </div>
             {% endif %}
         </div>
+    </div> {% endcomment %}
+    {% if clients %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+                <tr>
+                    <td>{{client.first_name}}</td>
+                    <td>{{client.last_name}}</td>
+                    <td>{{client.phone}}</td>
+                    <td>
+                        <a href={% url "detailview" client.id %} class="btn btn-info btn-icon-split btn-sm">
+                            <span class="icon">
+                                <i class="fas fa-info-circle"></i>
+                            </span>
+                        </a>
+                        {% if request.user.is_authenticated %}
+                        <a href={% url "deleteview" client.id %} class="btn btn-danger btn-icon-split btn-sm">
+                            <span class="icon">
+                                <i class="fas fa-trash"></i>
+                            </span>
+                        </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="h5">
+        No hay usuarios
     </div>
+    {% endif %}
 </div>
 {% endblock main %}
