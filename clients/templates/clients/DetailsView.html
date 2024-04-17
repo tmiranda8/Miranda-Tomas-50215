@@ -16,7 +16,9 @@ Cliente: {{client.first_name}} {{client.last_name}}
 		<th scope="col">Nombre</th>
 		<th scope="col">Apellido</th>
 		<th scope="col">Teléfono</th>
+		<th scope="col">Cumpleaños</th>
 		<th scope="col">Email</th>
+		<th scope="col">Agregado</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -24,7 +26,10 @@ Cliente: {{client.first_name}} {{client.last_name}}
 				<td>{{client.first_name}}</td>
 				<td>{{client.last_name}}</td>
 				<td>{{client.phone}}</td>
+				<td>{{client.birthday}}</td>
 				<td>{{client.email}}</td>
+				<td>{{client.added}}</td>
+
 			</tr>
 	</tbody>
 </table>

@@ -13,7 +13,7 @@ class Read(LoginRequiredMixin, ListView):
 class Create(LoginRequiredMixin, CreateView):
     model = models.Client
     template_name = 'clients/CreateView.html'
-    fields = ['first_name', 'last_name', 'phone', 'email']
+    fields = ['first_name', 'last_name', 'birthday', 'phone', 'email']
     success_url = reverse_lazy('listview')
 
 class Update(LoginRequiredMixin, UpdateView):

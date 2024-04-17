@@ -10,12 +10,13 @@ Nuevo dipositivo de red
 {% endblock h_1 %}
 
 {% block main %}
-{% if form.errors %}
-<p style="color: red;"> Error </p>
-{% endif %}
 <div class="d-flex flex-column">
     <div class="container-fluid d-flex justify-content-center">
         <div class = 'col-12 col-md-9 col-xl-6'>
+            {% if form.errors %}
+            {{form.errors}}
+            {% else %}
+            <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
                 <div class="input-group mb-2">
                     {{form.brand}}
                     {{form.product_type}}
@@ -26,13 +27,19 @@ Nuevo dipositivo de red
                 <div class="input-group mb-2">
                     <span class="input-group-text" style = 'border-top-right-radius:0;border-bottom-right-radius:0'>$</span>
                     {{form.price}}
-                    <select class="form-select">
-                        <option selected>ARS</option>
-                        <option value="usd">USD</option>
-                    </select>
+                </div>
+                <div class="input-group mb-2">
+                    {{form.image}}
+                </div>
+                <div class="input-group mb-2">
+                    {{form.specs}}
+                </div>
+                <div class="input-group mb-2">
+                    {{form.description}}
                 </div>
                 <input type="submit" value="Enviar" class = 'btn btn-primary btn-block'>
             </form>
+            {% endif %}
         </div>
     </div>
 </div>

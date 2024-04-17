@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def set_netdevice(request):
     if request.method == 'POST':
-        form = forms.AddNetworkDevice(request.POST)
+        form = forms.AddNetworkDevice(request.POST, request.FILES)
         if form.is_valid():
             cleaned = form.cleaned_data
             brand = cleaned['brand']
@@ -12,7 +12,8 @@ def set_netdevice(request):
             product_type = cleaned['product_type']
             price = cleaned['price']
             description = cleaned['description']
-            object = models.NetworkDevice(brand=brand, product_model=product_model, product_type=product_type, price=price, description=description)
+            specs = cleaned['specs']
+            object = models.NetworkDevice(brand = brand, product_model = product_model, product_type = product_type, price = price, description = description, image = request.FILES['image'], specs = specs)
             object.save()
             id = models.GlobalSearch(name=object.__str__(), id=object)
             id.save()
@@ -25,7 +26,7 @@ def set_netdevice(request):
 @login_required
 def set_iotdevice(request):
     if request.method == 'POST':
-        form = forms.AddIoTDevice(request.POST)
+        form = forms.AddIoTDevice(request.POST, request.FILES)
         if form.is_valid():
             cleaned = form.cleaned_data
             brand = cleaned['brand']
@@ -33,7 +34,8 @@ def set_iotdevice(request):
             product_type = cleaned['product_type']
             price = cleaned['price']
             description = cleaned['description']
-            object = models.IoTDevice(brand=brand, product_model=product_model, product_type=product_type, price=price, description=description)
+            specs = cleaned['specs']
+            object = models.IoTDevice(brand = brand, product_model = product_model, product_type = product_type, price = price, description = description, image = request.FILES['image'], specs = specs)
             object.save()
             id = models.GlobalSearch(name=object.__str__(), id=object)
             id.save()
@@ -44,7 +46,7 @@ def set_iotdevice(request):
 @login_required
 def set_hwcomp(request):
     if request.method == 'POST':
-        form = forms.AddHardwareComponent(request.POST)
+        form = forms.AddHardwareComponent(request.POST, request.FILES)
         if form.is_valid():
             cleaned = form.cleaned_data
             brand = cleaned['brand']
@@ -52,7 +54,8 @@ def set_hwcomp(request):
             product_type = cleaned['product_type']
             price = cleaned['price']
             description = cleaned['description']
-            object = models.HardwareComponent(brand=brand, product_model=product_model, product_type=product_type, price=price, description=description)
+            specs = cleaned['specs']
+            object = models.HardwareComponent(brand = brand, product_model = product_model, product_type = product_type, price = price, description = description, image = request.FILES['image'], specs = specs)
             object.save()
             id = models.GlobalSearch(name=object.__str__(), id=object)
             id.save()
@@ -68,7 +71,7 @@ def delete(request, object_id):
 @login_required
 def update(request, object_id):
     modify = models.Products.objects.get(id=object_id)
-    form = forms.UpdateDevice(initial={'brand':modify.brand, 'model':modify.product_model, 'product_type':modify.product_type, 'price':modify.price, 'description':modify.description})
+    form = forms.UpdateDevice(initial={'brand':modify.brand, 'model':modify.product_model, 'product_type':modify.product_type, 'price':modify.price, 'description':modify.description, 'image':modify.image, 'specs':modify.specs})
     if request.method == "POST":
         form = forms.UpdateDevice(request.POST)
         if form.is_valid():
@@ -78,6 +81,7 @@ def update(request, object_id):
             modify.product_type = cleaned['product_type']
             modify.price = cleaned['price']
             modify.description = cleaned['description']
+            modify.specs = cleaned['specs']
             modify.save()
             return redirect('database')
     return render(request, 'sites/update.html',{'form':form})

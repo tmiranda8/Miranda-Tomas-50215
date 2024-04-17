@@ -1,10 +1,13 @@
 from django.db import models
+from datetime import date
 
 class Client(models.Model):
     first_name = models.CharField(max_length = 32)
     last_name = models.CharField(max_length = 32)
+    birthday = models.DateField(null=False, blank=False, auto_now=False, auto_now_add=False)
     phone = models.IntegerField(null=False, blank=True)
     email = models.EmailField(max_length = 64, null=False, blank=True)
+    added = models.DateField(auto_now=False, auto_now_add=True)
 
 class CustomerAddress(models.Model):
     owner = models.ForeignKey(Client, on_delete=models.CASCADE)

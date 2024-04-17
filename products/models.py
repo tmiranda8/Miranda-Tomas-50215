@@ -12,6 +12,7 @@ class Products(models.Model):
     price = models.IntegerField(blank = True, null = True)
     description = models.TextField(blank = True)
     image = models.ImageField(upload_to='products', null = True, blank = True)
+    specs = models.URLField(max_length=200, null = False, blank = True)
 
 class NetworkDevice(Products):
     created = models.DateField(default = date.today)

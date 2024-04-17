@@ -60,12 +60,12 @@ La herencia HTML sucede a partir del elemento padre `./templates/index.html`. El
 Lo anterior conlleva una desventaja: Django deja de servir los archivos estáticos. Es por esta razón que el servicio debe iniciarse estrictamente con el parámetro `--insecure`, y no debe omitirse la correcta declaración previa de la dirección IP (`127.0.0.1`, por ejemplo) en ALLOWED_HOSTS. De lo contrario se producirá **Bad Request (400)**
 
 > [!IMPORTANT]
-Se recomienda iniciar el servicio como sigue, para evitar posibles errores:
+Es obligatorio iniciar el servicio como sigue, para evitar posibles errores:
 ```python manage.py runserver --insecure your.local.ip.address:port```
 
 Para arrancar el servicio en su totalidad luego de clonar el repositorio, deben realizarse los siguientes pasos:
 1. Crear entorno virtual: ```python -m venv /path/to/new/virtual/environment```
-2. Arrancar el entorno virtual. En bash: ```. venv_path/Scripts/Activate```
+2. Arrancar el entorno virtual. Este comando depende del sistema, por ejemplo en bash: ```source venv_path/Scripts/Activate```
 3. Instalar los paquetes necesarios: ```pip install -r requirements.txt```
 4. Migracion de la base de datos: ```python manage.py migrate```
 5. Crear superuser: ```python manage.py createsuperuser```

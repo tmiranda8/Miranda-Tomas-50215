@@ -1,11 +1,13 @@
 from django import forms
 
 class AddDevice(forms.Form):
-    brand = forms.CharField(max_length=32, widget=forms.TextInput(attrs={'class': 'form-control', 'id':'brand','placeholder':'Marca'}))
-    model = forms.CharField(max_length=32, widget=forms.TextInput(attrs={'class': 'form-control', 'id':'model','placeholder':'Modelo'}))
-    product_type = forms.CharField(max_length=32, widget=forms.TextInput(attrs={'class': 'form-control', 'id':'product_type','placeholder':'Categoria'}))
-    price = forms.IntegerField(required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'id':'price','placeholder':'Precio'}))
-    description = forms.CharField(max_length=255, required=False, widget=forms.Textarea(attrs={'class': 'form-control', 'id':'description','placeholder':'Descripcion'}))
+    brand = forms.CharField(max_length = 32, widget = forms.TextInput(attrs={'class': 'form-control', 'id':'brand','placeholder':'Marca'}))
+    model = forms.CharField(max_length = 32, widget = forms.TextInput(attrs={'class': 'form-control', 'id':'model','placeholder':'Modelo'}))
+    product_type = forms.CharField(max_length = 32, widget = forms.TextInput(attrs={'class': 'form-control', 'id':'product_type','placeholder':'Categoria'}))
+    price = forms.IntegerField(required = False, widget = forms.TextInput(attrs={'class': 'form-control', 'id':'price','placeholder':'Precio'}))
+    description = forms.CharField(max_length = 255, required = False, widget = forms.Textarea(attrs={'class': 'form-control', 'id':'description','placeholder':'Descripcion'}))
+    image = forms.ImageField(required = False, widget = forms.ClearableFileInput(attrs={'class': 'form-control', 'id':'image', 'style':'height:auto'}))
+    specs = forms.URLField(required = False, widget = forms.URLInput(attrs={'class': 'form-control', 'id':'URL','placeholder':'Sitio oficial del producto'}))
     def __init__(self,*args, **kwargs):
         super(AddDevice, self).__init__(*args, **kwargs)
         self.fields['brand'].label = ''
