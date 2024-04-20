@@ -3,25 +3,29 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 from django.contrib.auth.models import User
 
 class AuthForm(AuthenticationForm):
+    class Meta:
+        model = User
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['class'] = 'user form-control form-control-user'
         self.fields['username'].widget.attrs['id'] = 'username'
         self.fields['username'].widget.attrs['placeholder'] = 'Usuario'
-        
         self.fields['password'].widget.attrs['class'] = 'form-control form-control-user'
         self.fields['password'].widget.attrs['id'] = 'password'
         self.fields['password'].widget.attrs['placeholder'] = 'Contraseña'
         
         self.fields['username'].label = 'Usuario'
         self.fields['password'].label = 'Contraseña'
-    class Meta:
-        model = User
 
 class CreationForm(UserCreationForm):
     first_name = forms.CharField(max_length=32, widget=forms.TextInput(attrs={'class': 'form-control form-control-user', 'id':'first_name','placeholder':'Nombre'}))
     last_name = forms.CharField(max_length=32, widget=forms.TextInput(attrs={'class': 'form-control form-control-user', 'id':'last_name','placeholder':'Apellido'}))
 
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'username', 'password1', 'password2')
+    
     def __init__(self, *args, **kwargs):
         super(CreationForm, self).__init__(*args, **kwargs)
         
@@ -44,12 +48,13 @@ class CreationForm(UserCreationForm):
         self.fields['username'].help_text = None
         self.fields['password1'].help_text = None
         self.fields['password2'].help_text = None
-    class Meta:
-        model = User
-        fields = ('first_name', 'last_name', 'username', 'password1', 'password2')
 
 class EditForm(UserChangeForm):
     password = None
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email', 'username', 'date_joined')
+    
     def __init__(self, *args, **kwargs):
         super(UserChangeForm, self).__init__(*args, **kwargs)
         self.fields['first_name'].widget.attrs['class'] = 'form-control form-control-user'
@@ -61,9 +66,6 @@ class EditForm(UserChangeForm):
         self.fields['username'].widget.attrs['class'] = 'form-control form-control-user'
         self.fields['username'].widget.attrs['id'] = 'username'
         self.fields['username'].widget.attrs['placeholder'] = 'Usuario'
-        # self.fields['password'].widget.attrs['class'] = 'form-control form-control-user'
-        # self.fields['password'].widget.attrs['id'] = 'password'
-        # self.fields['password'].widget.attrs['placeholder'] = 'Contraseña'
         self.fields['email'].widget.attrs['class'] = 'form-control form-control-user'
         self.fields['email'].widget.attrs['id'] = 'email'
         self.fields['email'].widget.attrs['placeholder'] = 'Correo electronico'
@@ -73,11 +75,7 @@ class EditForm(UserChangeForm):
         self.fields['first_name'].label = 'Nombre'
         self.fields['last_name'].label = 'Apellido'
         self.fields['username'].label = 'Usuario'
-        # self.fields['password'].label = 'Contraseña'
         self.fields['email'].label = 'Correo electronico'
-    class Meta:
-        model = User
-        fields = ('first_name', 'last_name', 'email', 'username', 'date_joined')
 
 class ResetPwForm(PasswordChangeForm):
     def __init__(self, *args, **kwargs):
@@ -85,11 +83,9 @@ class ResetPwForm(PasswordChangeForm):
         self.fields['old_password'].widget.attrs['class'] = 'user form-control form-control-user'
         self.fields['old_password'].widget.attrs['id'] = 'old_password'
         self.fields['old_password'].widget.attrs['placeholder'] = 'Contraseña actual'
-        
         self.fields['new_password1'].widget.attrs['class'] = 'user form-control form-control-user'
         self.fields['new_password1'].widget.attrs['id'] = 'new_password1'
         self.fields['new_password1'].widget.attrs['placeholder'] = 'Nueva contraseña'
-        
         self.fields['new_password2'].widget.attrs['class'] = 'user form-control form-control-user'
         self.fields['new_password2'].widget.attrs['id'] = 'new_password2'
         self.fields['new_password2'].widget.attrs['placeholder'] = 'Confirme la contraseña'

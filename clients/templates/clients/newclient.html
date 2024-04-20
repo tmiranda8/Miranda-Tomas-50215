@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+Nuevo cliente
+{% endblock title %}
+
+{% block h_1 %}
+Nuevo cliente
+{% endblock h_1 %}
+
+{% block main %}
+<div class="d-flex flex-column">
+    <div class="container-fluid d-flex justify-content-center">
+        <div class = 'col-12 col-md-9 col-xl-6'>
+            {% if form.errors %}
+            {{form.errors}}
+            {% else %}
+            <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                <div class="input-group mb-2">
+                    {{form.first_name}}
+                    {{form.last_name}}
+                </div>
+                <div class="input-group mb-2">
+                    {{form.phone}}
+                    {{form.birthday}}
+                </div>
+                <div class="input-group mb-2">
+                    {{form.email}}
+                </div>
+                <input type="submit" value="Enviar" class = 'btn btn-primary btn-block'>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock main %}

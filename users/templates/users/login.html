@@ -37,6 +37,9 @@ NO HEREDA DE INDEX
                                         <a href={% url "homepage" %} style = 'text-decoration:none'><h1 class="h4 text-gray-900 mb-4">Bienvenido</h1></a>
                                     </div>
                                     <hr>
+                                    {% if form.errors %}
+                                    {{form.errors}}
+                                    {% endif %}
                                     <form class="user" action={% url "login" %} method="POST"> {% csrf_token %}
                                         <div class="form-group">
                                             {{username}}

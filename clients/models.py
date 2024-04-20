@@ -1,7 +1,10 @@
+from typing import Any
 from django.db import models
 from datetime import date
 
 class Client(models.Model):
+    def __init__(self, *args, **kwargs):
+        super(Billing, self).__init__(*args, **kwargs)
     first_name = models.CharField(max_length = 32)
     last_name = models.CharField(max_length = 32)
     birthday = models.DateField(null=False, blank=False, auto_now=False, auto_now_add=False)
@@ -18,5 +21,5 @@ class CustomerAddress(models.Model):
 
 class Billing(models.Model):
     client = models.OneToOneField(Client, on_delete=models.CASCADE)
-    corporation = models.BooleanField()
-    CUIT = models.BigIntegerField(null=False, blank=True)
+    corporation = models.BooleanField(default=False)
+    CUIT = models.BigIntegerField(null=False, blank=True, default=0)
